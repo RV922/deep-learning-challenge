@@ -5,27 +5,82 @@ For this part of the assignment, you’ll write a report on the performance of t
 
 The report should contain the following:
 
-Overview of the analysis: Explain the purpose of this analysis.
+## Overview of the analysis: Explain the purpose of this analysis.
 
-Results: Using bulleted lists and images to support your answers, address the following questions:
+The purpose of the analysis is to create a neural network to predict if the charity will be successfeul or not.
 
-Data Preprocessing
+## Results: Using bulleted lists and images to support your answers, address the following questions:
 
-What variable(s) are the target(s) for your model?
+### Data Preprocessing
 
-What variable(s) are the features for your model?
+#### What variable(s) are the target(s) for your model?
 
-What variable(s) should be removed from the input data because they are neither targets nor features?
+The target variable is "IS_SUCCESSFUL" column where if the charity was successful the value is 1 otherwise is 0.
 
-Compiling, Training, and Evaluating the Model
+#### What variable(s) are the features for your model?
 
-How many neurons, layers, and activation functions did you select for your neural network model, and why?
+For both the baseline and the optimized versions of the model, following columns were used as features:
+APPLICATION_TYPE, AFFILIATION, CLASSIFICATION, USE_CASE, ORGANIZATION, STATUS, INCOME_AMT, SPECIAL_CONSIDERATIONS, ASK_AMT.
 
-Were you able to achieve the target model performance?
+#### What variable(s) should be removed from the input data because they are neither targets nor features?
 
-What steps did you take in your attempts to increase model performance?
+There were only two variables removed from the feature set: EIN, NAME.
 
-Summary: Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and then explain your recommendation.
+### Compiling, Training, and Evaluating the Model
+
+#### How many neurons, layers, and activation functions did you select for your neural network model, and why?
+
+Following model configuration was used in the **baseline** version: 
+
+- Number of Hidden Layers: 2 
+- Number of Nodes (Neurons) per Hidden Layer: First Layer (80 nodes), Second Layer (30 nodes).
+- Activation Functions: There were 2 activation function used, ReLU was used for the two hidden layers while Sigmoid was used for the output layer.
+
+Following model configuration was used in the **first optimization attempt**: 
+
+**Changes made compare to the baseline:** Only increased the number of nodes in the hidden layers.
+
+- Number of Hidden Layers: 2
+- Number of Nodes (Neurons) per Hidden Layer: First Layer (120 nodes), Second Layer (60 nodes).
+- Activation Functions: There were 2 activation function used, ReLU was used for the two hidden layers while Sigmoid was used for the output layer.
+
+Following model configuration was used in the **second optimization attempt**: 
+
+**Changes made compare to the baseline:** Increased the number of nodes, hidden layers and Epochs.
+
+- Number of Hidden Layers: 3
+- Number of Nodes (Neurons) per Hidden Layer: First Layer (150 nodes), Second Layer (75 nodes), Third Layer (50 nodes)
+- Activation Functions: There were 2 activation function used, ReLU was used for the two hidden layers while Sigmoid was used for the output layer.
+- Number of Epochs: Increased the number of Epochs from 100 to 200.
+
+Following model configuration was used in the **Third optimization attempt**: 
+
+**Changes made compare to the baseline:** Only changed the activation functions for all the layers.
+
+- Number of Hidden Layers: 2
+- Number of Nodes (Neurons) per Hidden Layer: First Layer (80 nodes), Second Layer (30 nodes).
+- Activation Functions: There were 2 activation function used, relu from baseline was changed to tanh for the hidden layers and sigmoid was changed to softmax for the output layer.
+
+#### Were you able to achieve the target model performance?
+
+No, I was not able achieve the target performance. I got the following accuracy scores for each of the attempts.
+
+- **Baseline** Accuracy: 72.99%
+- **First optimization attempt** Accuracy: 72.91%
+- **Second optimization attempt** Accuracy: 72.82%
+- **Third optimization attempt** Accuracy: 53.24%
+
+#### What steps did you take in your attempts to increase model performance?
+
+**First optimization attempt:** Increased the number of nodes in the hidden layers, used 120 nodes for the first layer and 60 nodes for the second layer.
+
+**Second optimization attempt:** Increased the number of nodes for the first hidden layer from 80 in the baseline to 150 and for the second hidden layer from 30 to 75. Also added a third hidden layer with 50 nodes and in addition to this increased the number of Epochs from 100 to 200.
+
+**Third optimization attempt:** Changed the activation functions for all the layers, relu from baseline was changed to tanh for the hidden layers and sigmoid was changed to softmax for the output layer.
+
+## Summary: Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and then explain your recommendation.
+
+Summarized the results above. Random Forest model could also has been used for this problem as it works well for binary classification tasks.
 
 
 
